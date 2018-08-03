@@ -1,5 +1,5 @@
 /*
-class Cat(var size: nullable Int = 26, val name: nullable String = null)
+class Cat(var size: nullable Int = 26, var name: nullable String = null)
  */
 
 package jvm.test4;
@@ -15,7 +15,7 @@ public final class Cat {
     @NotNull
     private OptionalInt size;
     @NotNull
-    private final Optional<String> name;
+    private Optional<String> name;
 
     public Cat(@Nullable final OptionalInt size, int mask1, @Nullable final Optional<String> name, int mask2) {
         this(((mask1 & 1) != 0) ? OptionalInt.of(26) : size,
@@ -42,5 +42,10 @@ public final class Cat {
     @NotNull
     public final Optional<String> getName() {
         return this.name;
+    }
+
+    public final void setName(@NotNull final Optional<String> name) {
+        Validation.checkParameterIsNotNull(name, "name");
+        this.name = name;
     }
 }

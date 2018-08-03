@@ -4,6 +4,11 @@
      val previousSize = cat.size
      cat.size = previousSize + 2
    }
+
+   func changeName(nameSuffix: String) -> Void {
+     val previousName = cat.name
+     cat.name = previousName + nameSuffix
+   }
  }
  */
 
@@ -34,5 +39,11 @@ public final class CatOwner {
     public final void increaseSize() {
         final var previousSize = this.cat.getWheelSize();
         this.cat.setWheelSize(previousSize + 2);
+    }
+
+    public final void changeName(@NotNull final String nameSuffix) {
+        Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
+        final var previousName = this.cat.getName();
+        this.cat.setName(previousName + nameSuffix);
     }
 }

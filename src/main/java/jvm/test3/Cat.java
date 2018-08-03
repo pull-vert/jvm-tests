@@ -1,5 +1,5 @@
 /*
- class Cat(var size: Int = 26, val name: String = 'grumpy')
+ class Cat(var size: Int = 26, var name: String = 'grumpy')
  */
 
 package jvm.test3;
@@ -12,7 +12,7 @@ public final class Cat {
     @NotNull
     private int size;
     @NotNull
-    private final String name;
+    private String name;
 
     public Cat(@Nullable final Integer size, int mask1, @Nullable final String name, int mask2) {
         this(((mask1 & 1) != 0) ? 26 : size,
@@ -39,5 +39,10 @@ public final class Cat {
     @NotNull
     public final String getName() {
         return this.name;
+    }
+
+    public final void setName(@NotNull final String name) {
+        Validation.checkParameterIsNotNull(name, "name");
+        this.name = name;
     }
 }

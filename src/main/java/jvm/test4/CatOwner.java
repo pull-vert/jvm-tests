@@ -11,7 +11,7 @@
  }
  */
 
-package jvm.test5;
+package jvm.test4;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;
@@ -39,13 +39,13 @@ public final class CatOwner {
     }
 
     public final void increaseSize() {
-        final var previousSize = (null != this.cat.getSize()) ? OptionalInt.of(this.cat.getSize()) : OptionalInt.empty();
+        final var previousSize = this.cat.getSize();
         this.cat.setSize((previousSize.isPresent()) ? OptionalInt.of(previousSize.getAsInt() + 2) : OptionalInt.empty());
     }
 
     public final void changeName(@NotNull final String nameSuffix) {
         Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
-        final var previousName = Optional.ofNullable(this.cat.getName());
+        final var previousName = this.cat.getName();
         this.cat.setName(previousName.map((@NotNull final var pn) -> pn + nameSuffix));
     }
 }

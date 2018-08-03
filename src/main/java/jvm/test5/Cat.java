@@ -1,5 +1,5 @@
 /*
-class Cat(var size: nullable Int = 26, val name: nullable String = null) is Serializable
+class Cat(var size: nullable Int = 26, var name: nullable String = null) is Serializable
  */
 
 package jvm.test5;
@@ -16,7 +16,7 @@ public final class Cat implements Serializable {
     @Nullable
     private Integer size;
     @Nullable
-    private final String name;
+    private String name;
 
     public Cat(@Nullable final OptionalInt size, int mask1, @Nullable final Optional<String> name, int mask2) {
         this(((mask1 & 1) != 0) ? OptionalInt.of(26) : size,
@@ -47,5 +47,14 @@ public final class Cat implements Serializable {
     @Nullable
     public final String getName() {
         return this.name;
+    }
+
+    public final void setName(@Nullable final String name) {
+        this.name = name;
+    }
+
+    public final void setName(@NotNull final Optional<String> name) {
+        Validation.checkParameterIsNotNull(name, "name");
+        this.name = name.orElse(null);
     }
 }

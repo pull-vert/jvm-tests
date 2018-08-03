@@ -1,5 +1,5 @@
 /*
-class Cat(val size: Int)
+class Cat(val size: Int, val name: String)
  */
 
 package jvm.test2;
@@ -10,14 +10,23 @@ import internal.validation.Validation;
 public final class Cat {
     @NotNull
     private final int size;
+    @NotNull
+    private final String name;
 
-    public Cat(@NotNull final Integer size) {
+    public Cat(@NotNull final Integer size, @NotNull final String name) {
         Validation.checkParameterIsNotNull(size, "size");
+        Validation.checkParameterIsNotNull(name, "name");
         this.size = size;
+        this.name = name;
     }
 
     @NotNull
-    public final int getWheelSize() {
+    public final int getSize() {
         return this.size;
+    }
+
+    @NotNull
+    public final String getName() {
+        return this.name;
     }
 }
