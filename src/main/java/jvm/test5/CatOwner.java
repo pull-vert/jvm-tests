@@ -1,3 +1,12 @@
+/*
+ class CatOwner(val cat: Cat = Cat()) {
+   func increaseSize() -> Void {
+     val previousSize = cat.size
+     cat.size = previousSize? + 2
+   }
+ }
+ */
+
 package jvm.test5;
 
 import internal.annotations.NotNull;
@@ -6,24 +15,14 @@ import internal.validation.Validation;
 
 import java.util.OptionalInt;
 
-// class CatOwner(val cat: Cat = Cat()) {
-// func increaseSize() -> Void {
-// val previousSize = cat.size
-// cat.size = previousSize? + 2
-// }
-//}
 public final class CatOwner {
     @NotNull
     private final Cat cat;
 
-    // ACCESSIBLE from Java ???
-    // One Constructor for default values
     public CatOwner(@Nullable final Cat cat, int mask1) {
-        // Call full parameters Constructor
         this(((mask1 & 1) != 0) ? new Cat(null, 1, null, 1) : cat);
     }
 
-    // full parameters Constructor
     public CatOwner(@NotNull final Cat cat) {
         Validation.checkParameterIsNotNull(cat, "cat");
         this.cat = cat;

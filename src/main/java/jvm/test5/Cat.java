@@ -1,3 +1,7 @@
+/*
+class Cat(var size: nullable Int = 26, val name: nullable String = null) is Serializable
+ */
+
 package jvm.test5;
 
 import internal.annotations.NotNull;
@@ -8,22 +12,17 @@ import java.io.Serializable;
 import java.util.Optional;
 import java.util.OptionalInt;
 
-// class Cat(var size: nullable Int = 26, val name: nullable String = null) is Serializable
 public final class Cat implements Serializable {
     @Nullable
     private Integer size;
     @Nullable
     private final String name;
 
-    // ACCESSIBLE from Java ???
-    // One Constructor for default values
     public Cat(@Nullable final OptionalInt size, int mask1, @Nullable final Optional<String> name, int mask2) {
-        // Call full parameters Constructor
         this(((mask1 & 1) != 0) ? OptionalInt.of(26) : size,
                 ((mask2 & 1) != 0) ? Optional.empty() : name);
     }
 
-    // full parameters Constructor
     public Cat(@NotNull final OptionalInt size, @NotNull final Optional<String> name) {
         Validation.checkParameterIsNotNull(size, "size");
         Validation.checkParameterIsNotNull(name, "name");

@@ -1,9 +1,12 @@
+/*
+class Cat(val size: Int)
+ */
+
 package jvm.test2;
 
 import internal.annotations.NotNull;
 import internal.validation.Validation;
 
-// class Cat(val size: Int)
 public final class Cat {
     @NotNull
     private final int size;
