@@ -1,6 +1,4 @@
 /*
-class Cat() is Animal(), Serializable
- or
  class Cat is Animal, Serializable {
  func maxSpeed() -> Int { return 12 }
  or
@@ -28,6 +26,7 @@ public final class Cat extends Animal implements Serializable {
     private void demoValVar() {
         final var constant = 1000;
         var variable = 0;
+        // ...
         variable = 42;
     }
 }

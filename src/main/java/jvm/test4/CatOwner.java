@@ -1,5 +1,5 @@
 /*
- class CatOwner(val cat: Cat = Cat()) {
+ class CatOwner(private val cat: Cat = Cat()) {
    func increaseSize() -> Void {
      val previousSize = cat.size
      cat.size = previousSize? + 2
@@ -17,7 +17,6 @@ import internal.annotations.NotNull;
 import internal.annotations.Nullable;
 import internal.validation.Validation;
 
-import java.util.Optional;
 import java.util.OptionalInt;
 
 public final class CatOwner {
@@ -31,11 +30,6 @@ public final class CatOwner {
     public CatOwner(@NotNull final Cat cat) {
         Validation.checkParameterIsNotNull(cat, "cat");
         this.cat = cat;
-    }
-
-    @NotNull
-    public final Cat getCat() {
-        return this.cat;
     }
 
     public final void increaseSize() {
