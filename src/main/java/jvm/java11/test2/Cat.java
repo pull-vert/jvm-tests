@@ -2,7 +2,7 @@
 class Cat(val size: Int, val name: String)
  */
 
-package jvm.test2;
+package jvm.java11.test2;
 
 import internal.annotations.NotNull;
 import internal.validation.Validation;

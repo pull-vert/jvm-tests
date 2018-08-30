@@ -2,7 +2,7 @@
 class Cat(var size: nullable Int = 26, var name: nullable String = null) is Serializable
  */
 
-package jvm.test5;
+package jvm.java11.test5;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;

@@ -2,7 +2,7 @@
  open class Animal
 */
 
-package jvm.test1;
+package jvm.java10.test1;
 
 public class Animal {
 }

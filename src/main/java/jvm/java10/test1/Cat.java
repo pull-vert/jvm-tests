@@ -13,7 +13,7 @@
  }
 */
 
-package jvm.test1;
+package jvm.java10.test1;
 
 import java.io.Serializable;
 

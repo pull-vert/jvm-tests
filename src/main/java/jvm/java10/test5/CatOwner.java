@@ -11,7 +11,7 @@
  }
  */
 
-package jvm.test5;
+package jvm.java10.test5;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;
@@ -41,6 +41,6 @@ public final class CatOwner {
     public final void changeName(@NotNull final String nameSuffix) {
         Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
         final var previousName = Optional.ofNullable(this.cat.getName());
-        this.cat.setName(previousName.map((@NotNull final var pn) -> pn + nameSuffix));
+        this.cat.setName(previousName.map(pn -> pn + nameSuffix));
     }
 }

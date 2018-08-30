@@ -12,7 +12,7 @@
  }
  */
 
-package jvm.test3;
+package jvm.java11.test3;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;
