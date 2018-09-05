@@ -14,13 +14,14 @@ repositories {
 dependencies {
     // dependencies for std-lib
     compile('com.google.code.findbugs:jsr305:3.0.2')
-    compile('com.squareup:javapoet:1.11.1')
 
+    testCompile('com.squareup:javapoet:1.11.1')
     testCompile('junit:junit:4.12')
     testCompile('org.assertj:assertj-core:3.10.0')
+    testCompile('com.fasterxml.jackson.core:jackson-databind:2.9.6')
 }
 
-// remove .gradle directory and use ./gradlew wrapper when version change
+// execute ./gradlew wrapper then remove .gradle directory when version change
 wrapper {
     gradleVersion = '4.10'
     distributionType = Wrapper.DistributionType.ALL

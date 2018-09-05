@@ -34,7 +34,7 @@ public final class CatOwner {
     }
 
     public final void increaseSize() {
-        final var previousSize = this.cat.getSize();
+        final OptionalInt previousSize = this.cat.getSize();
         this.cat.setSize((previousSize.isPresent()) ? OptionalInt.of(previousSize.getAsInt() + 2) : OptionalInt.empty());
     }
 

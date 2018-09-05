@@ -34,13 +34,13 @@ public final class CatOwner {
     }
 
     public final void increaseSize() {
-        final var previousSize = (null != this.cat.getSize()) ? OptionalInt.of(this.cat.getSize()) : OptionalInt.empty();
-        this.cat.setSize((previousSize.isPresent()) ? OptionalInt.of(previousSize.getAsInt() + 2) : OptionalInt.empty());
+        final OptionalInt previousSize = this.cat.optionalSize();
+        this.cat.setOptionalSize((previousSize.isPresent()) ? OptionalInt.of(previousSize.getAsInt() + 2) : OptionalInt.empty());
     }
 
     public final void changeName(@NotNull final String nameSuffix) {
         Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
-        final Optional<String> previousName = Optional.ofNullable(this.cat.getName());
-        this.cat.setName(previousName.map(pn -> pn + nameSuffix));
+        final Optional<String> previousName = this.cat.optionalName();
+        this.cat.setOptionalName(previousName.map(pn -> pn + nameSuffix));
     }
 }
