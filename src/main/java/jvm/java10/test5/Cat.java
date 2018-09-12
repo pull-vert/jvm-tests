@@ -18,6 +18,8 @@ public final class Cat implements Serializable {
     @Nullable
     private String name;
 
+    public Cat() {}
+
     public Cat(@Nullable final OptionalInt size, int mask1, @Nullable final Optional<String> name, int mask2) {
         this(((mask1 & 1) != 0) ? OptionalInt.of(26) : size,
                 ((mask2 & 1) != 0) ? Optional.empty() : name);
@@ -35,11 +37,16 @@ public final class Cat implements Serializable {
         return this.size;
     }
 
+    @NotNull
+    public final OptionalInt optionalSize() {
+        return (null != this.size) ? OptionalInt.of(this.size) : OptionalInt.empty();
+    }
+
     public final void setSize(@Nullable final Integer size) {
         this.size = size;
     }
 
-    public final void setSize(@NotNull final OptionalInt size) {
+    public final void setOptionalSize(@NotNull final OptionalInt size) {
         Validation.checkParameterIsNotNull(size, "size");
         this.size = size.isPresent() ? size.getAsInt() : null;
     }
@@ -49,12 +56,43 @@ public final class Cat implements Serializable {
         return this.name;
     }
 
+    @NotNull
+    public final Optional<String> optionalName() {
+        return Optional.ofNullable(this.name);
+    }
+
     public final void setName(@Nullable final String name) {
         this.name = name;
     }
 
-    public final void setName(@NotNull final Optional<String> name) {
+    public final void setOptionalName(@NotNull final Optional<String> name) {
         Validation.checkParameterIsNotNull(name, "name");
         this.name = name.orElse(null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cat cat = (Cat) o;
+
+        if (size != null ? !size.equals(cat.size) : cat.size != null) return false;
+        return name != null ? name.equals(cat.name) : cat.name == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = size != null ? size.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "size=" + size +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -23,6 +23,6 @@ dependencies {
 
 // execute ./gradlew wrapper then remove .gradle directory when version change
 wrapper {
-    gradleVersion = '4.10'
-    distributionType = Wrapper.DistributionType.ALL
+    gradleVersion='4.10'
+    distributionType=Wrapper.DistributionType.ALL
 }
