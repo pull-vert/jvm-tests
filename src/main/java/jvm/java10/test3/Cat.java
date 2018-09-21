@@ -27,12 +27,11 @@ public final class Cat {
     }
 
     @NotNull
-    public final int getWheelSize() {
+    public final int getSize() {
         return this.size;
     }
 
-    public final void setWheelSize(@NotNull final Integer size) {
-        Validation.checkParameterIsNotNull(size, "size");
+    public final void setSize(@NotNull final int size) {
         this.size = size;
     }
 

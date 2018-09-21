@@ -32,8 +32,8 @@ public final class CatOwner {
     }
 
     public final void increaseSize() {
-        final int previousSize = this.cat.getWheelSize();
-        this.cat.setWheelSize(previousSize + 2);
+        final int previousSize = this.cat.getSize();
+        this.cat.setSize(previousSize + 2);
     }
 
     public final void changeName(@NotNull final String nameSuffix) {

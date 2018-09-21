@@ -13,10 +13,10 @@ import java.util.Optional;
 import java.util.OptionalInt;
 
 public final class Cat implements Serializable {
-    @Nullable
-    private Integer size;
-    @Nullable
-    private String name;
+    @NotNull
+    private OptionalInt size;
+    @NotNull
+    private Optional<String> name;
 
     public Cat() {}
 
@@ -28,46 +28,46 @@ public final class Cat implements Serializable {
     public Cat(@NotNull final OptionalInt size, @NotNull final Optional<String> name) {
         Validation.checkParameterIsNotNull(size, "size");
         Validation.checkParameterIsNotNull(name, "name");
-        this.size = size.isPresent() ? size.getAsInt() : 26;
-        this.name = name.orElse(null);
+        this.size = size;
+        this.name = name;
     }
 
     @Nullable
     public final Integer getSize() {
-        return this.size;
+        return (this.size.isPresent()) ? this.size.getAsInt() : null ;
     }
 
     @NotNull
     public final OptionalInt optionalSize() {
-        return (null != this.size) ? OptionalInt.of(this.size) : OptionalInt.empty();
+        return this.size;
     }
 
     public final void setSize(@Nullable final Integer size) {
-        this.size = size;
+        this.size = (null != size) ? OptionalInt.of(size) : OptionalInt.empty();
     }
 
     public final void setOptionalSize(@NotNull final OptionalInt size) {
         Validation.checkParameterIsNotNull(size, "size");
-        this.size = size.isPresent() ? size.getAsInt() : null;
+        this.size = size;
     }
 
     @Nullable
     public final String getName() {
-        return this.name;
+        return this.name.orElse(null);
     }
 
     @NotNull
     public final Optional<String> optionalName() {
-        return Optional.ofNullable(this.name);
+        return this.name;
     }
 
     public final void setName(@Nullable final String name) {
-        this.name = name;
+        this.name = Optional.ofNullable(name);
     }
 
     public final void setOptionalName(@NotNull final Optional<String> name) {
         Validation.checkParameterIsNotNull(name, "name");
-        this.name = name.orElse(null);
+        this.name = name;
     }
 
     @Override
@@ -77,14 +77,14 @@ public final class Cat implements Serializable {
 
         Cat cat = (Cat) o;
 
-        if (size != null ? !size.equals(cat.size) : cat.size != null) return false;
-        return name != null ? name.equals(cat.name) : cat.name == null;
+        if (!size.equals(cat.size)) return false;
+        return name.equals(cat.name);
     }
 
     @Override
     public int hashCode() {
-        int result = size != null ? size.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = size.hashCode();
+        result = 31 * result + name.hashCode();
         return result;
     }
 

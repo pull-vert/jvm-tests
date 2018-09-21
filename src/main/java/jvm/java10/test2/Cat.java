@@ -13,8 +13,7 @@ public final class Cat {
     @NotNull
     private final String name;
 
-    public Cat(@NotNull final Integer size, @NotNull final String name) {
-        Validation.checkParameterIsNotNull(size, "size");
+    public Cat(@NotNull final int size, @NotNull final String name) {
         Validation.checkParameterIsNotNull(name, "name");
         this.size = size;
         this.name = name;
