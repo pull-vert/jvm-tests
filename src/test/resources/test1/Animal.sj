@@ -1,3 +1,11 @@
 package jvm.test1
 
-open class Animal
+interface Animal {
+  api {
+    func maxSpeed() -> Int
+
+    func printMaxSpeed() -> Void {
+      println("Max speed is ${maxSpeed()}")
+    }
+  }
+}
