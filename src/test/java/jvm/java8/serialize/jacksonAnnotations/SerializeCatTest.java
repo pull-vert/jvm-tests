@@ -1,4 +1,4 @@
-package jvm.java8.test5;
+package jvm.java8.serialize.jacksonAnnotations;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
