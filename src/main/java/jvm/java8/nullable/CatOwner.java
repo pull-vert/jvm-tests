@@ -11,7 +11,7 @@
  }
  */
 
-package jvm.java8.test4;
+package jvm.java8.nullable;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;

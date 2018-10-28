@@ -1,4 +1,4 @@
-package jvm.java8.test1;
+package jvm.java8.implementInterface;
 
 import org.junit.Test;
 

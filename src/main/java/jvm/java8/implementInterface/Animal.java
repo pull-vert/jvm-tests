@@ -10,7 +10,7 @@
  }
 */
 
-package jvm.java8.test1;
+package jvm.java8.implementInterface;
 
 import internal.annotations.NotNull;
 
