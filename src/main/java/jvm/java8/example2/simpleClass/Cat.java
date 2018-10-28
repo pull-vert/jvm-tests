@@ -2,7 +2,7 @@
 class Cat(api val size: Int, api val name: String)
  */
 
-package jvm.java8.simpleClass;
+package jvm.java8.example2.simpleClass;
 
 import internal.annotations.NotNull;
 import internal.validation.Validation;

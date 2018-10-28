@@ -2,7 +2,7 @@
  class Cat(var size: Int = 26, var name: String = 'grumpy')
  */
 
-package jvm.java8.dependency;
+package jvm.java8.example3.dependency;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;

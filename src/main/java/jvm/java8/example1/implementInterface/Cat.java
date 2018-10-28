@@ -17,7 +17,7 @@
  }
 */
 
-package jvm.java8.implementInterface;
+package jvm.java8.example1.implementInterface;
 
 import internal.annotations.NotNull;
 
@@ -30,12 +30,16 @@ public final class Cat {
     public static interface Api extends Animal.Api, Serializable {
     }
 
-    @NotNull
-    public static Cat.Api New() {
-        return new Class();
+    public static final class Builder {
+        public Api build() {
+            return new Class();
+        }
     }
 
     private static final class Class implements Api, Animal.Interface {
+
+        private Class() { }
+
         @Override
         @NotNull
         public final int maxSpeed() {

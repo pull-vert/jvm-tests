@@ -2,7 +2,7 @@
 data class Cat(api var size: nullable Int = 26, api var name: nullable String = null) is Serializable
  */
 
-package jvm.java8.serialize.jacksonAnnotations;
+package jvm.java8.example5.serializeJackson;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

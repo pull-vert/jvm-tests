@@ -2,21 +2,23 @@
  class CatOwner(private val cat: Cat = Cat()) {
    func increaseSize() -> Void {
      val previousSize = cat.size
-     cat.size = previousSize + 2
+     cat.size = previousSize? + 2
    }
-
    func changeName(nameSuffix: String) -> Void {
      val previousName = cat.name
-     cat.name = previousName + nameSuffix
+     cat.name = previousName? + nameSuffix
    }
  }
  */
 
-package jvm.java8.dependency;
+package jvm.java8.example4.nullable;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;
 import internal.validation.Validation;
+
+import java.util.Optional;
+import java.util.OptionalInt;
 
 public final class CatOwner {
     @NotNull
@@ -32,13 +34,13 @@ public final class CatOwner {
     }
 
     public final void increaseSize() {
-        final int previousSize = this.cat.getSize();
-        this.cat.setSize(previousSize + 2);
+        final OptionalInt previousSize = this.cat.getSize();
+        this.cat.setSize((previousSize.isPresent()) ? OptionalInt.of(previousSize.getAsInt() + 2) : OptionalInt.empty());
     }
 
     public final void changeName(@NotNull final String nameSuffix) {
         Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
-        final String previousName = this.cat.getName();
-        this.cat.setName(previousName + nameSuffix);
+        final Optional<String> previousName = this.cat.getName();
+        this.cat.setName(previousName.map(pn -> pn + nameSuffix));
     }
 }

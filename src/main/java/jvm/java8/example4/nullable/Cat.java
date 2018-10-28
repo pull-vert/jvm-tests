@@ -2,7 +2,7 @@
 class Cat(var size: nullable Int = 26, var name: nullable String = null)
  */
 
-package jvm.java8.nullable;
+package jvm.java8.example4.nullable;
 
 import internal.annotations.NotNull;
 import internal.annotations.Nullable;

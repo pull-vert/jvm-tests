@@ -14,7 +14,7 @@
  }
  */
 
-package jvm.java8.serialize.jacksonAnnotations;
+package jvm.java8.example5.serializeJackson;
 
 import internal.annotations.NotNull;
 import internal.validation.Validation;
