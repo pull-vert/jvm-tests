@@ -15,11 +15,11 @@ dependencies {
     // dependencies for std-lib
     compile('com.google.code.findbugs:jsr305:3.0.2')
     compile('org.eclipse.collections:eclipse-collections:10.0.0.M2')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.9.7')
 
     testCompile('com.squareup:javapoet:1.11.1')
     testCompile('junit:junit:4.12')
     testCompile('org.assertj:assertj-core:3.11.1')
-    testCompile('com.fasterxml.jackson.core:jackson-databind:2.9.7')
 }
 
 // execute ./gradlew wrapper then remove .gradle directory when version change

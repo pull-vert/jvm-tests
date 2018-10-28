@@ -35,7 +35,7 @@ public final class Cat {
         return new Class();
     }
 
-    private static final class Class implements Cat.Api, Animal.Interface {
+    private static final class Class implements Api, Animal.Interface {
         @Override
         @NotNull
         public final int maxSpeed() {
