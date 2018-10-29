@@ -7,7 +7,7 @@ public class Validation {
     private Validation() {} // uninstanciable
 
     public static <T> void checkParameterIsNotNull(@Nullable T obj, @NotNull String paramName) {
-        if (obj == null) {
+        if (null == obj) {
             throw new NullPointerException("Parameter " + paramName + " must not be null !!!");
         }
     }

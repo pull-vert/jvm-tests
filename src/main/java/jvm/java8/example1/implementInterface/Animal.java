@@ -1,11 +1,9 @@
 /*
  interface Animal {
-   api {
-     func maxSpeed() -> Int
+   api func maxSpeed() -> Int
 
-     func printMaxSpeed() -> Void {
-       println("Max speed is ${maxSpeed()}")
-     }
+   api func printMaxSpeed() -> Void {
+     println("Max speed is ${maxSpeed()}")
    }
  }
 */
@@ -29,9 +27,13 @@ public final class Animal {
     }
 
     public interface Interface extends Api {
+        default void printMaxSpeed_jvm_java8_example1_implementInterface_Animal() {
+            System.out.println(MessageFormat.format("Max speed is {0}", maxSpeed()));
+        }
+
         @Override
         default void printMaxSpeed() {
-            System.out.println(MessageFormat.format("Max speed is {0}", maxSpeed()));
+            printMaxSpeed_jvm_java8_example1_implementInterface_Animal();
         }
     }
 }

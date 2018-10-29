@@ -16,8 +16,8 @@ public class SerializeCatTest {
             .withSize(OptionalInt.of(42))
             .withName(Optional.of("maow"))
             .build();
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(inCat);
+        final var objectMapper = new ObjectMapper();
+        final var json = objectMapper.writeValueAsString(inCat);
         final var outCat = objectMapper.readValue(json, Cat.Api.class);
         assertThat(outCat).isEqualTo(inCat);
         assertThat(outCat.getSize()).isPresent()

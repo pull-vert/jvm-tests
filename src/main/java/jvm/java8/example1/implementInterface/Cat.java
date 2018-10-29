@@ -1,18 +1,16 @@
 /*
  class Cat is Animal, Serializable {
-   api {
-     override func maxSpeed() -> Int { return 12 }
-     // or
-     override func maxSpeed() -> Int = 12
+   override api func maxSpeed() -> Int {
+     return 12
    }
+   // or
+   override api func maxSpeed() -> Int = 12
 
-   private {
-     func demoValVar() -> Void {
-       val constant = 1000
-       var variable = 0
-       // ...
-       variable = 42
-     }
+   private func demoValVar() -> Void {
+     val constant = 1000
+     var variable = 0
+     // ...
+     variable = 42
    }
  }
 */
@@ -25,12 +23,21 @@ import java.io.Serializable;
 
 public final class Cat {
 
-    private Cat() { } // uninstanciable
+    // uninstanciable
+    private Cat() {
+    }
 
     public static interface Api extends Animal.Api, Serializable {
     }
 
     public static final class Builder {
+        private Builder() {
+        }
+
+        public final static Builder newBuilder() {
+            return new Builder();
+        }
+
         public Api build() {
             return new Class();
         }
@@ -38,7 +45,11 @@ public final class Cat {
 
     private static final class Class implements Api, Animal.Interface {
 
-        private Class() { }
+        /**
+         * called by builder
+         */
+        private Class() {
+        }
 
         @Override
         @NotNull

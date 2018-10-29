@@ -18,19 +18,37 @@ public final class Cat {
         public String getName();
     }
 
-    @NotNull
-    public static Api New(@NotNull final int size, @NotNull final String name) {
-        return new Class(size, name);
+    public static final class Builder {
+        @NotNull
+        private int size;
+        @NotNull
+        private String name;
+
+        private Builder(@NotNull final int size, @NotNull final String name) {
+            this.size = size;
+            this.name = name;
+        }
+
+        public final static Builder newBuilder(@NotNull final int size, @NotNull final String name) {
+            Validation.checkParameterIsNotNull(name, "name");
+            return new Builder(size, name);
+        }
+
+        public Api build() {
+            return new Class(this.size, this.name);
+        }
     }
 
-    private static final class Class implements Cat.Api {
+    private static final class Class implements Api {
         @NotNull
         private final int size;
         @NotNull
         private final String name;
 
+        /**
+         * called by builder only
+         */
         private Class(@NotNull final int size, @NotNull final String name) {
-            Validation.checkParameterIsNotNull(name, "name");
             this.size = size;
             this.name = name;
         }
