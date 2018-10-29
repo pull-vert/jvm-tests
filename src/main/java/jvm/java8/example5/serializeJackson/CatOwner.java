@@ -31,7 +31,7 @@ public final class CatOwner {
 
     public static final class Builder {
         @NotNull
-        private Cat.Api cat = new Cat.Builder().build();
+        private Cat.Api cat = Cat.builder("brown").build();
 
         public final Builder withCat(@NotNull final Cat.Api cat) {
             Validation.checkParameterIsNotNull(cat, "cat");

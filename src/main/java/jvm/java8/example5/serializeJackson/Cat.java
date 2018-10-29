@@ -1,9 +1,10 @@
 /*
-data class Cat(api var size: nullable Int = 26, api var name: nullable String = null) is Serializable
+data class Cat(api var size: nullable Int = 26, api var name: nullable String = null, api val color: String) is Serializable
  */
 
 package jvm.java8.example5.serializeJackson;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -19,17 +20,24 @@ public final class Cat {
 
     private Cat() { } // uninstanciable
 
-    @JsonDeserialize(builder = Cat.Builder.class)
+    public final static Builder builder(@NotNull final String color) {
+        return new Builder(color);
+    }
+
+    @JsonDeserialize(builder = Builder.class)
     public static interface Api extends Serializable {
         @NotNull
         public OptionalInt getSize();
 
+        public void setSize(@NotNull final OptionalInt size);
+
         @NotNull
         public Optional<String> getName();
 
-        public void setSize(@NotNull final OptionalInt size);
-
         public void setName(@NotNull final Optional<String> name);
+
+        @NotNull
+        public String getColor();
     }
 
     @JsonPOJOBuilder(withPrefix = "withSerializable")
@@ -38,6 +46,14 @@ public final class Cat {
         private OptionalInt size = OptionalInt.of(26);
         @NotNull
         private Optional<String> name = Optional.empty();
+        @NotNull
+        private String color;
+
+        @JsonCreator
+        private Builder(@NotNull @JsonProperty("color") final String color) {
+            Validation.checkParameterIsNotNull(color, "color");
+            this.color = color;
+        }
 
         public final Builder withSize(@NotNull final OptionalInt size) {
             Validation.checkParameterIsNotNull(size, "size");
@@ -62,7 +78,7 @@ public final class Cat {
         }
 
         public Api build() {
-            return new Class(this.size, this.name);
+            return new Class(this.size, this.name, this.color);
         }
     }
 
@@ -71,10 +87,13 @@ public final class Cat {
         private transient OptionalInt size;
         @NotNull
         private transient Optional<String> name;
+        @NotNull
+        private String color;
 
-        private Class(@NotNull final OptionalInt size, @NotNull final Optional<String> name) {
+        private Class(@NotNull final OptionalInt size, @NotNull final Optional<String> name, @NotNull final String color) {
             this.size = size;
             this.name = name;
+            this.color = color;
         }
 
         @JsonProperty("size")
@@ -113,21 +132,30 @@ public final class Cat {
             this.name = name;
         }
 
+        @JsonProperty("color")
+        @Override
+        @NotNull
+        public String getColor() {
+            return this.color;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
 
-            Class cat = (Class) o;
+            Class aClass = (Class) o;
 
-            if (!size.equals(cat.size)) return false;
-            return name.equals(cat.name);
+            if (!size.equals(aClass.size)) return false;
+            if (!name.equals(aClass.name)) return false;
+            return color.equals(aClass.color);
         }
 
         @Override
         public int hashCode() {
             int result = size.hashCode();
             result = 31 * result + name.hashCode();
+            result = 31 * result + color.hashCode();
             return result;
         }
 
