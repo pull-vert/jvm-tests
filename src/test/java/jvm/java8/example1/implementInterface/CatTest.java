@@ -8,14 +8,14 @@ public class CatTest {
 
     @Test
     public void maxSpeed() {
-        final var cat = Cat.Builder.newBuilder()
+        final var cat = Cat.builder()
                 .build();
         assertThat(cat.maxSpeed()).isEqualTo(12);
     }
 
     @Test
     public void printMaxSpeed() {
-        final var cat = Cat.Builder.newBuilder()
+        final var cat = Cat.builder()
                 .build();
         cat.printMaxSpeed();
     }

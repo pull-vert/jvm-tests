@@ -1,15 +1,13 @@
 /*
  class CatOwner(private val cat: Cat = new Cat()) {
-   api {
-     func increaseSize() -> Void {
-       val previousSize = cat.size
-       cat.size = previousSize? + 2
-     }
+   api func increaseSize() -> Void {
+     val previousSize = cat.size
+     cat.size = previousSize? + 2
+   }
 
-     func changeName(nameSuffix: String) -> Void {
-       val previousName = cat.name
-       cat.name = previousName? + nameSuffix
-     }
+   api func changeName(nameSuffix: String) -> Void {
+     val previousName = cat.name
+     cat.name = previousName? + nameSuffix
    }
  }
  */
@@ -24,6 +22,14 @@ import java.util.OptionalInt;
 
 public final class CatOwner {
 
+    // uninstanciable
+    private CatOwner() {
+    }
+
+    public final static Builder builder() {
+        return new Builder();
+    }
+
     public static interface Api {
         public void increaseSize();
         public void changeName(@NotNull final String nameSuffix);
@@ -32,6 +38,9 @@ public final class CatOwner {
     public static final class Builder {
         @NotNull
         private Cat.Api cat = Cat.builder("brown").build();
+
+        Builder() {
+        }
 
         public final Builder withCat(@NotNull final Cat.Api cat) {
             Validation.checkParameterIsNotNull(cat, "cat");

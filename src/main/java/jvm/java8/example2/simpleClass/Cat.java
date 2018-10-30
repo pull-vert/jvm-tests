@@ -9,11 +9,18 @@ import internal.validation.Validation;
 
 public final class Cat {
 
-    private Cat() { } // uninstanciable
+    // uninstanciable
+    private Cat() {
+    }
+
+    public final static Builder builder(@NotNull final int size, @NotNull final String name) {
+        return new Builder(size, name);
+    }
 
     public static interface Api {
         @NotNull
         public int getSize();
+
         @NotNull
         public String getName();
     }
@@ -24,14 +31,10 @@ public final class Cat {
         @NotNull
         private String name;
 
-        private Builder(@NotNull final int size, @NotNull final String name) {
+        Builder(@NotNull final int size, @NotNull final String name) {
+            Validation.checkParameterIsNotNull(name, "name");
             this.size = size;
             this.name = name;
-        }
-
-        public final static Builder newBuilder(@NotNull final int size, @NotNull final String name) {
-            Validation.checkParameterIsNotNull(name, "name");
-            return new Builder(size, name);
         }
 
         public Api build() {

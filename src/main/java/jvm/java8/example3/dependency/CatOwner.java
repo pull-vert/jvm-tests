@@ -1,11 +1,11 @@
 /*
  class CatOwner(private val cat: Cat = Cat()) {
-   func increaseSize() -> Void {
+   api func increaseSize() -> Void {
      val previousSize = cat.size
      cat.size = previousSize + 2
    }
 
-   func changeName(nameSuffix: String) -> Void {
+   api func changeName(nameSuffix: String) -> Void {
      val previousName = cat.name
      cat.name = previousName + nameSuffix
    }
@@ -15,30 +15,61 @@
 package jvm.java8.example3.dependency;
 
 import internal.annotations.NotNull;
-import internal.annotations.Nullable;
 import internal.validation.Validation;
 
 public final class CatOwner {
-    @NotNull
-    private final Cat cat;
 
-    public CatOwner(@Nullable final Cat cat, int mask1) {
-        this(((mask1 & 1) != 0) ? new Cat(null, 1, null, 1) : cat);
+    // uninstanciable
+    private CatOwner() {
     }
 
-    public CatOwner(@NotNull final Cat cat) {
-        Validation.checkParameterIsNotNull(cat, "cat");
-        this.cat = cat;
+    public final static Builder builder() {
+        return new Builder();
     }
 
-    public final void increaseSize() {
-        final int previousSize = this.cat.getSize();
-        this.cat.setSize(previousSize + 2);
+    public static interface Api {
+        public void increaseSize();
+        public void changeName(@NotNull final String nameSuffix);
     }
 
-    public final void changeName(@NotNull final String nameSuffix) {
-        Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
-        final String previousName = this.cat.getName();
-        this.cat.setName(previousName + nameSuffix);
+    public static final class Builder {
+        @NotNull
+        private Cat.Api cat = Cat.builder().build();
+
+        Builder() {
+        }
+
+        public final Builder withCat(@NotNull final Cat.Api cat) {
+            Validation.checkParameterIsNotNull(cat, "cat");
+            this.cat = cat;
+            return this;
+        }
+
+        public Api build() {
+            return new Class(this.cat);
+        }
+    }
+
+    private static final class Class implements Api {
+        @NotNull
+        private final Cat.Api cat;
+
+        private Class(@NotNull final Cat.Api cat) {
+            Validation.checkParameterIsNotNull(cat, "cat");
+            this.cat = cat;
+        }
+
+        @Override
+        public final void increaseSize() {
+            final int previousSize = this.cat.getSize();
+            this.cat.setSize(previousSize + 2);
+        }
+
+        @Override
+        public final void changeName(@NotNull final String nameSuffix) {
+            Validation.checkParameterIsNotNull(nameSuffix, "nameSuffix");
+            final String previousName = this.cat.getName();
+            this.cat.setName(previousName + nameSuffix);
+        }
     }
 }

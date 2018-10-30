@@ -18,7 +18,9 @@ import java.util.OptionalInt;
 
 public final class Cat {
 
-    private Cat() { } // uninstanciable
+    // uninstanciable
+    private Cat() {
+    }
 
     public final static Builder builder(@NotNull final String color) {
         return new Builder(color);
@@ -50,7 +52,7 @@ public final class Cat {
         private String color;
 
         @JsonCreator
-        private Builder(@NotNull @JsonProperty("color") final String color) {
+        Builder(@NotNull @JsonProperty("color") final String color) {
             Validation.checkParameterIsNotNull(color, "color");
             this.color = color;
         }
@@ -61,7 +63,7 @@ public final class Cat {
             return this;
         }
 
-        public final Builder withSerializableSize(@Nullable final Integer size) {
+        final Builder withSerializableSize(@Nullable final Integer size) {
             this.size = (null != size) ? OptionalInt.of(size) : OptionalInt.empty();
             return this;
         }
@@ -72,7 +74,7 @@ public final class Cat {
             return this;
         }
 
-        public final Builder withSerializableName(@Nullable final String name) {
+        final Builder withSerializableName(@Nullable final String name) {
             this.name = Optional.ofNullable(name);
             return this;
         }

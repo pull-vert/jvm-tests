@@ -27,15 +27,15 @@ public final class Cat {
     private Cat() {
     }
 
+    public final static Builder builder() {
+        return new Builder();
+    }
+
     public static interface Api extends Animal.Api, Serializable {
     }
 
     public static final class Builder {
-        private Builder() {
-        }
-
-        public final static Builder newBuilder() {
-            return new Builder();
+        Builder() {
         }
 
         public Api build() {

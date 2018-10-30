@@ -9,7 +9,7 @@ public class CatTest {
 
     @Test
     public void instanciateCatWithRequiredFields() {
-        final var cat = Cat.Builder.newBuilder(42, "Moquette")
+        final var cat = Cat.builder(42, "Moquette")
                 .build();
         assertThat(cat.getSize()).isEqualTo(42);
         assertThat(cat.getName()).isEqualTo("Moquette");
@@ -17,7 +17,7 @@ public class CatTest {
 
     @Test(expected = NullPointerException.class)
     public void instanciateCatWithMissingRequiredField() {
-        Cat.Builder.newBuilder(42, null)
+        Cat.builder(42, null)
                 .build();
         fail("Expected Exception not thrown");
     }
