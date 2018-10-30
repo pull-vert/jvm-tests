@@ -27,13 +27,13 @@ public final class Animal {
     }
 
     public interface Interface extends Api {
-        default void printMaxSpeed_jvm_java8_example1_implementInterface_Animal() {
+        public default void printMaxSpeed_jvm_java8_builder_example1_implementInterface_Animal() {
             System.out.println(MessageFormat.format("Max speed is {0}", maxSpeed()));
         }
 
         @Override
-        default void printMaxSpeed() {
-            printMaxSpeed_jvm_java8_example1_implementInterface_Animal();
+        public default void printMaxSpeed() {
+            printMaxSpeed_jvm_java8_builder_example1_implementInterface_Animal();
         }
     }
 }
