@@ -31,7 +31,29 @@ public final class Cat {
         return new Builder();
     }
 
-    public static interface Api extends Animal.Api, Serializable {
+    public interface Api extends Animal.Api, Serializable {
+    }
+
+    private static class PrivateMethods {
+        // No need to pass Complete parameter because code is independent
+        private static void demoValVar() {
+            final int constant = 1000;
+            int variable = 0;
+            // ...
+            variable = 42;
+        }
+    }
+
+    public interface Complete extends Api, Animal.Interface {
+        public default int maxSpeed_jvm_java8_constructor_example1_implementInterface_Cat() {
+            return 12;
+        }
+
+        @Override
+        @NotNull
+        public default int maxSpeed() {
+            return maxSpeed_jvm_java8_constructor_example1_implementInterface_Cat();
+        }
     }
 
     public static final class Builder {
@@ -43,25 +65,12 @@ public final class Cat {
         }
     }
 
-    private static final class Class implements Api, Animal.Interface {
+    private static final class Class implements Complete {
 
         /**
          * called by builder
          */
         private Class() {
-        }
-
-        @Override
-        @NotNull
-        public final int maxSpeed() {
-            return 12;
-        }
-
-        private void demoValVar() {
-            final int constant = 1000;
-            int variable = 0;
-            // ...
-            variable = 42;
         }
     }
 }
