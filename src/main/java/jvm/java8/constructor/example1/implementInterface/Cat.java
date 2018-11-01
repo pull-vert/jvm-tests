@@ -29,8 +29,7 @@ public final class Cat implements CatSj.Api {
         return delegate.maxSpeed();
     }
 
-    @Override
-    public void printMaxSpeed() {
+    protected void printMaxSpeed() {
         delegate.printMaxSpeed();
     }
 }

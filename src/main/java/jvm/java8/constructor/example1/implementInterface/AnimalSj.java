@@ -14,7 +14,6 @@ public final class AnimalSj {
             System.out.println(MessageFormat.format("Max speed is {0}", maxSpeed()));
         }
 
-        @Override
         public default void printMaxSpeed() {
             printMaxSpeed_jvm_java8_constructor_example1_implementInterface_Animal();
         }

@@ -2,7 +2,7 @@
  interface Animal {
    api func maxSpeed() -> Int
 
-   api func printMaxSpeed() -> Void {
+   protected func printMaxSpeed() -> Void {
      println("Max speed is ${maxSpeed()}")
    }
  }
@@ -15,6 +15,4 @@ import internal.annotations.NotNull;
 public interface Animal {
     @NotNull
     public int maxSpeed();
-
-    public void printMaxSpeed();
 }
