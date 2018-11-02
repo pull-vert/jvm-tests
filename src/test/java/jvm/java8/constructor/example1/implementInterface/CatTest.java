@@ -11,10 +11,4 @@ public class CatTest {
         final var cat = new Cat();
         assertThat(cat.maxSpeed()).isEqualTo(12);
     }
-
-    @Test
-    public void printMaxSpeed() {
-        final var cat = new Cat();
-        cat.printMaxSpeed();
-    }
 }
