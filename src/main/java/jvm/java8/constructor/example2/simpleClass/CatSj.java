@@ -3,7 +3,7 @@ package jvm.java8.constructor.example2.simpleClass;
 import internal.annotations.NotNull;
 import internal.validation.Validation;
 
-public class CatSj {
+public final class CatSj {
     // uninstanciable
     private CatSj() {
     }

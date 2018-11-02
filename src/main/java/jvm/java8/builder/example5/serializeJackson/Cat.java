@@ -52,7 +52,7 @@ public final class Cat {
         private String color;
 
         @JsonCreator
-        Builder(@NotNull @JsonProperty("color") final String color) {
+        private Builder(@NotNull @JsonProperty("color") final String color) {
             Validation.checkParameterIsNotNull(color, "color");
             this.color = color;
         }
@@ -63,7 +63,7 @@ public final class Cat {
             return this;
         }
 
-        final Builder withSerializableSize(@Nullable final Integer size) {
+        private Builder withSerializableSize(@Nullable final Integer size) {
             this.size = (null != size) ? OptionalInt.of(size) : OptionalInt.empty();
             return this;
         }
@@ -74,7 +74,7 @@ public final class Cat {
             return this;
         }
 
-        final Builder withSerializableName(@Nullable final String name) {
+        private Builder withSerializableName(@Nullable final String name) {
             this.name = Optional.ofNullable(name);
             return this;
         }
@@ -100,7 +100,7 @@ public final class Cat {
 
         @JsonProperty("size")
         @Nullable
-        public final Integer getSerializableSize() {
+        private Integer getSerializableSize() {
             return (this.size.isPresent()) ? this.size.getAsInt() : null;
         }
 
@@ -118,7 +118,7 @@ public final class Cat {
 
         @JsonProperty("name")
         @Nullable
-        public final String getSerializableName() {
+        private String getSerializableName() {
             return this.name.orElse(null);
         }
 
@@ -134,7 +134,6 @@ public final class Cat {
             this.name = name;
         }
 
-        @JsonProperty("color")
         @Override
         @NotNull
         public String getColor() {
@@ -166,6 +165,7 @@ public final class Cat {
             return "Cat{" +
                     "size=" + size +
                     ", name='" + name + '\'' +
+                    ", color='" + color + '\'' +
                     '}';
         }
     }
