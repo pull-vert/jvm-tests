@@ -48,6 +48,9 @@ public final class CatSj {
         @NotNull
         private String color;
 
+        /**
+         * called by Cat class
+         */
         Implementation(@NotNull final OptionalInt size, @NotNull final Optional<String> name, @NotNull final String color) {
             Validation.checkParameterIsNotNull(size, "size");
             Validation.checkParameterIsNotNull(name, "name");
