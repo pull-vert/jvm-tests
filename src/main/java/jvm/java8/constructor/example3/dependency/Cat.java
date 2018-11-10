@@ -6,20 +6,30 @@ package jvm.java8.constructor.example3.dependency;
 
 import internal.annotations.NotNull;
 
-public class Cat implements CatSj.Api {
+public final class Cat implements CatSj.Api {
     private CatSj.Implementation delegate;
 
     public Cat(@NotNull final int size, @NotNull final String name) {
-        delegate = new CatSj.Implementation(size, name);
+        this.delegate = new CatSj.Implementation(size, name);
     }
 
     @Override
     public int getSize() {
-        return delegate.getSize();
+        return this.delegate.getSize();
+    }
+
+    @Override
+    public void setSize(@NotNull int size) {
+        this.delegate.setSize(size);
     }
 
     @Override
     public String getName() {
-        return  delegate.getName();
+        return  this.delegate.getName();
+    }
+
+    @Override
+    public void setName(@NotNull String name) {
+        this.delegate.setName(name);
     }
 }

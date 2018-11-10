@@ -10,16 +10,16 @@ public final class Cat implements CatSj.Api {
     private CatSj.Implementation delegate;
 
     public Cat(@NotNull final int size, @NotNull final String name) {
-        delegate = new CatSj.Implementation(size, name);
+        this.delegate = new CatSj.Implementation(size, name);
     }
 
     @Override
     public int getSize() {
-        return delegate.getSize();
+        return this.delegate.getSize();
     }
 
     @Override
     public String getName() {
-        return  delegate.getName();
+        return this.delegate.getName();
     }
 }

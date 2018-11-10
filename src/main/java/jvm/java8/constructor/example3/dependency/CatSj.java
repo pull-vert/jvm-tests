@@ -13,8 +13,12 @@ public final class CatSj {
         @NotNull
         public int getSize();
 
+        public void setSize(@NotNull int size);
+
         @NotNull
         public String getName();
+
+        public void setName(@NotNull String name);
     }
 
     public static final class FuncWithDefaultValue {
@@ -30,9 +34,9 @@ public final class CatSj {
 
     static final class Implementation implements Api {
         @NotNull
-        private final int size;
+        private int size;
         @NotNull
-        private final String name;
+        private String name;
 
         /**
          * called by Cat class
@@ -50,9 +54,19 @@ public final class CatSj {
         }
 
         @Override
+        public void setSize(@NotNull int size) {
+            this.size = size;
+        }
+
+        @Override
         @NotNull
         public final String getName() {
             return this.name;
+        }
+
+        @Override
+        public void setName(@NotNull String name) {
+            this.name = name;
         }
     }
 }

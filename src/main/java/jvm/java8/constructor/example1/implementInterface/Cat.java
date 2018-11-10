@@ -21,11 +21,11 @@ public final class Cat implements CatSj.Api {
     private CatSj.Implementation delegate;
 
     public Cat() {
-        delegate = new CatSj.Implementation();
+        this.delegate = new CatSj.Implementation();
     }
 
     @Override
     public int maxSpeed() {
-        return delegate.maxSpeed();
+        return this.delegate.maxSpeed();
     }
 }
