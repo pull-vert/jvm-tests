@@ -66,6 +66,7 @@ public final class CatSj {
 
         @Override
         public void setName(@NotNull String name) {
+            Validation.checkParameterIsNotNull(name, "name");
             this.name = name;
         }
     }
