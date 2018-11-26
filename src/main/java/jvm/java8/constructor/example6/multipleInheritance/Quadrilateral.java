@@ -1,6 +1,6 @@
 /*
  interface Quadrilateral {
-   api func area() -> Int
+   api val area: Int
  }
 */
 
@@ -10,5 +10,5 @@ import internal.annotations.NotNull;
 
 public interface Quadrilateral {
     @NotNull
-    public int area();
+    public int getArea();
 }
